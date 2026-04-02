@@ -20,7 +20,7 @@ export default function Dashboard() {
       try {
         // 2. Fetch the history from the backend
         const response = await fetch(
-          "http://localhost:5000/api/interview/history",
+          "https://techprep-backend-vmjb.onrender.com/api/interview/history",
           {
             headers: {
               Authorization: `Bearer ${token}`, // Show the bouncer the token
@@ -137,5 +137,3 @@ export default function Dashboard() {
     </div>
   );
 }
- 
-

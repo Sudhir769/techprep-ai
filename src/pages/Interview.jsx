@@ -23,7 +23,7 @@ export default function Interview() {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:5000/api/interview/start",
+        "https://techprep-backend-vmjb.onrender.com/api/interview/start",
         {
           method: "POST",
           headers: {
@@ -53,7 +53,7 @@ export default function Interview() {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:5000/api/interview/submit",
+        "https://techprep-backend-vmjb.onrender.com/api/interview/submit",
         {
           method: "POST",
           headers: {
