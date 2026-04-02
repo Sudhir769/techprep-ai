@@ -4,8 +4,6 @@ import tailwindcss from "@tailwindcss/vite"; // <-- 1. Import it
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(), // <-- 2. Add it here
-  ],
+  plugins: [react(), tailwindcss()],
+  base: '/techprep-ai',
 });
