@@ -8,22 +8,19 @@ export default function Dashboard() {
 
   useEffect(() => {
     const fetchHistory = async () => {
-      // 1. Grab the VIP wristband from memory
-      const token = localStorage.getItem("techprep_token");
+      const token = localStorage.getItem("token");
 
-      // If they don't have a token, kick them back to the login screen!
       if (!token) {
         navigate("/");
         return;
       }
 
       try {
-        // 2. Fetch the history from the backend
         const response = await fetch(
           "https://techprep-backend-vmjb.onrender.com/api/interview/history",
           {
             headers: {
-              Authorization: `Bearer ${token}`, // Show the bouncer the token
+              Authorization: `Bearer ${token}`, 
             },
           },
         );
@@ -33,8 +30,7 @@ export default function Dashboard() {
         if (response.ok) {
           setInterviews(data.interviews);
         } else {
-          // If the token is expired or invalid, clear it and force a re-login
-          localStorage.removeItem("techprep_token");
+          localStorage.removeItem("token");
           navigate("/");
         }
       } catch (error) {
@@ -48,8 +44,8 @@ export default function Dashboard() {
   }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem("techprep_token");
-    navigate("/interview");
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   if (loading) {
