@@ -31,7 +31,6 @@ export default function Register() {
         throw new Error(data.message || "Registration failed");
       }
 
-      // If successful, send them to the login page to sign in!
       alert("Account created successfully! Please log in.");
       navigate("/");
     } catch (err) {
@@ -42,75 +41,76 @@ export default function Register() {
   };
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md mx-auto mt-20">
-      <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
-        Create an Account
-      </h2>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
+      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+        <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
+          Create an Account
+        </h2>
 
-      {error && (
-        <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
-          {error}
+        {error && (
+          <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleRegister} className="space-y-4">
+          <div>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Full Name
+            </label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Email Address
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              required
+              minLength="6"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition disabled:bg-blue-300"
+          >
+            {loading ? "Creating Account..." : "Sign Up"}
+          </button>
+        </form>
+
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-600">
+            Already have an account?{" "}
+            <Link to="/" className="text-blue-600 hover:underline font-bold">
+              Log In Here
+            </Link>
+          </p>
         </div>
-      )}
-
-      <form onSubmit={handleRegister} className="space-y-4">
-        <div>
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Full Name
-          </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Email Address
-          </label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Password
-          </label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-            required
-            minLength="6"
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition disabled:bg-blue-300"
-        >
-          {loading ? "Creating Account..." : "Sign Up"}
-        </button>
-      </form>
-
-      {/* Link back to the Login page */}
-      <div className="mt-6 text-center">
-        <p className="text-sm text-gray-600">
-          Already have an account?{" "}
-          <Link to="/" className="text-blue-600 hover:underline font-bold">
-            Log In Here
-          </Link>
-        </p>
       </div>
     </div>
   );
