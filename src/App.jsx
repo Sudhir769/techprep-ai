@@ -16,6 +16,7 @@ function App() {
           <Route path="/interview" element={<Interview />} />
           <Route path="/register" element={<Register />} />
           <Route path="/review" element={<Review />} />
+          
         </Routes>
       </div>
     </HashRouter>
