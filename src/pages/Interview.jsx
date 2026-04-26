@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 export default function Interview() {
   const navigate = useNavigate();
 
-  // State for the different phases
-  const [phase, setPhase] = useState("setup"); // 'setup', 'answering', 'results'
+
+  const [phase, setPhase] = useState("setup"); 
   const [loading, setLoading] = useState(false);
 
   // Data state
@@ -15,9 +15,8 @@ export default function Interview() {
   const [answers, setAnswers] = useState([]);
   const [results, setResults] = useState(null);
 
-  const token = localStorage.getItem("techprep_token");
+  const token = localStorage.getItem("token");
 
-  // --- PHASE 1: Start the Interview ---
   const startInterview = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -38,7 +37,7 @@ export default function Interview() {
       if (response.ok) {
         setQuestions(data.questions);
         setInterviewId(data.interviewId);
-        setAnswers(new Array(data.questions.length).fill("")); // Create empty answer slots
+        setAnswers(new Array(data.questions.length).fill("")); 
         setPhase("answering");
       }
     } catch (error) {
@@ -48,7 +47,6 @@ export default function Interview() {
     }
   };
 
-  // --- PHASE 2: Submit Answers to the Grader ---
   const submitAnswers = async () => {
     setLoading(true);
     try {
@@ -85,7 +83,7 @@ export default function Interview() {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
-        {/* --- UI: SETUP PHASE --- */}
+
         {phase === "setup" && (
           <div>
             <h2 className="text-3xl font-bold text-gray-800 mb-6">
@@ -114,7 +112,6 @@ export default function Interview() {
           </div>
         )}
 
-        {/* --- UI: ANSWERING PHASE --- */}
         {phase === "answering" && (
           <div>
             <h2 className="text-2xl font-bold text-gray-800 mb-2">
@@ -152,7 +149,6 @@ export default function Interview() {
           </div>
         )}
 
-        {/* --- UI: RESULTS PHASE --- */}
         {phase === "results" && results && (
           <div>
             <h2 className="text-3xl font-bold text-gray-800 mb-2">
